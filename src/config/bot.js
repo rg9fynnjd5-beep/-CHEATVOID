@@ -10,27 +10,17 @@ export const botConfig = {
   // - "idle"      = yellow moon
   // - "dnd"       = red do-not-disturb
   // - "invisible" = appears offline
-  presence: {
-    // Current online state shown on Discord.
-    status: "online",
+ presence: {
+  status: "dnd",
 
-    // Activity lines shown under the bot name.
-    // `type` number mapping from Discord:
-    // 0 = Playing
-    // 1 = Streaming
-    // 2 = Listening
-    // 3 = Watching
-    // 4 = Custom
-    // 5 = Competing
-    activities: [
-      {
-        // Text users will see (example: "Playing /help | Titan Bot").
-        name: "Made with ❤️",
-        // Activity type number (0 = Playing).
-        type: 0, 
-      },
-    ],
-  },
+  activities: [
+    {
+      name: "🔥 CHEATVOID",
+      type: 3, // Watching
+    },
+  ],
+},
+   
 
   // =========================
   // COMMAND BEHAVIOR
@@ -85,70 +75,65 @@ export const botConfig = {
   // EMBED COLORS & BRANDING
   // =========================
   // IMPORTANT: This is the SINGLE SOURCE OF TRUTH for all bot colors
-  embeds: {
-    colors: {
-      // Main brand colors.
-      primary: "#336699", 
-      secondary: "#2F3136", 
+ embeds: {
+  colors: {
+    primary: "#8A2BE2",
+    secondary: "#120A1F",
 
-      // Standard status colors for success/error/warning/info messages.
-      success: "#57F287", 
-      error: "#ED4245", 
-      warning: "#FEE75C", 
-      info: "#3498DB", 
+    success: "#00FF88",
+    error: "#FF2E63",
+    warning: "#FFD93D",
+    info: "#7B61FF",
 
-      // Neutral utility colors.
-      light: "#FFFFFF",
-      dark: "#202225",
-      gray: "#99AAB5",
+    light: "#FFFFFF",
+    dark: "#0A0A0A",
+    gray: "#6C7293",
 
-      // Discord-style palette shortcuts.
-      blurple: "#5865F2",
-      green: "#57F287",
-      yellow: "#FEE75C",
-      fuchsia: "#EB459E",
-      red: "#ED4245",
-      black: "#000000",
+    blurple: "#7B61FF",
+    green: "#00FF88",
+    yellow: "#FFD93D",
+    fuchsia: "#C026FF",
+    red: "#FF2E63",
+    black: "#000000",
 
-      // Feature-specific colors.
-      giveaway: {
-        active: "#57F287",
-        ended: "#ED4245",
-      },
-      ticket: {
-        open: "#57F287",
-        claimed: "#FAA61A",
-        closed: "#ED4245",
-        pending: "#99AAB5",
-      },
-      economy: "#F1C40F",
-      birthday: "#E91E63",
-      moderation: "#9B59B6",
-
-      // Ticket priority color mapping.
-      priority: {
-        none: "#95A5A6",
-        low: "#3498db",
-        medium: "#2ecc71",
-        high: "#f1c40f",
-        urgent: "#e74c3c",
-      },
+    giveaway: {
+      active: "#00FF88",
+      ended: "#FF2E63",
     },
-    footer: {
-      // Default footer text used in bot embeds.
-      text: "Titan Bot",
-      // Footer icon URL (null = no icon).
-      icon: null,
+
+    ticket: {
+      open: "#00FF88",
+      claimed: "#FFD93D",
+      closed: "#FF2E63",
+      pending: "#6C7293",
     },
-    // Default thumbnail URL for embeds (null = no thumbnail).
-    thumbnail: null,
-    author: {
-      // Optional default embed author block.
-      name: null,
-      icon: null,
-      url: null,
+
+    economy: "#C026FF",
+    birthday: "#FF4FD8",
+    moderation: "#8A2BE2",
+
+    priority: {
+      none: "#95A5A6",
+      low: "#00BFFF",
+      medium: "#00FF88",
+      high: "#FFD93D",
+      urgent: "#FF2E63",
     },
   },
+
+  footer: {
+    text: "CHEATVOID • Secure • Detect • Dominate",
+    icon: null,
+  },
+
+  thumbnail: null,
+
+  author: {
+    name: "CHEATVOID",
+    icon: null,
+    url: null,
+  },
+},
 
   // =========================
   // ECONOMY SETTINGS
@@ -288,87 +273,54 @@ export const botConfig = {
   // VERIFICATION SETTINGS
   // =========================
   verification: {
-    // Message shown when posting the verification panel.
-    defaultMessage: "Click the button below to verify yourself and gain access to the server!",
+  defaultMessage:
+    "🛡️ Welcome to CHEATVOID. Verify yourself below to gain access to all server channels.",
 
-    // Text on the verification button.
-    defaultButtonText: "Verify",
+  defaultButtonText: "Enter CHEATVOID",
 
-    // Automatic verification behavior.
-    autoVerify: {
-      // How automatic verification decides who is auto-approved:
-      // - "none"        = everyone is auto-verified immediately
-      // - "account_age" = account must be older than set days
-      // - "server_size" = auto-verify everyone only in smaller servers
-      defaultCriteria: "none",
+  autoVerify: {
+    defaultCriteria: "none",
+    defaultAccountAgeDays: 7,
+    serverSizeThreshold: 1000,
+    minAccountAge: 1,
+    maxAccountAge: 365,
+    sendDMNotification: true,
 
-      // Days used when `defaultCriteria` is `account_age`.
-      defaultAccountAgeDays: 7,
-
-      // Member count threshold used when `defaultCriteria` is `server_size`.
-      // Example: 1000 means auto-verify if server has fewer than 1000 members.
-      serverSizeThreshold: 1000,
-
-      // Allowed safety limits for account-age requirements.
-      // 1 = minimum day, 365 = maximum days.
-      minAccountAge: 1,      
-      maxAccountAge: 365,    
-
-      // If true, user receives a DM after verification.
-      sendDMNotification: true,
-
-      // Human-readable descriptions for each criteria mode.
-      criteria: {
-        account_age: "Account must be older than specified days",
-        server_size: "All users if server has less than 1000 members",
-        none: "All users immediately"
-      }
-    },
-
-    // Minimum time between verification attempts (milliseconds).
-    // 5000 = 5 seconds.
-    verificationCooldown: 5000,  
-
-    // Maximum failed attempts allowed inside the time window below.
-    maxVerificationAttempts: 3,   
-
-    // Time window for counting attempts (milliseconds).
-    // 60000 = 1 minute.
-    attemptWindow: 60000,          
-
-    // In-memory safety limits (helps avoid unbounded memory growth).
-    maxCooldownEntries: 10000,
-    maxAttemptEntries: 10000,
-    // Cleanup frequency for cooldown/attempt maps (milliseconds).
-    // 300000 = 5 minutes.
-    cooldownCleanupInterval: 300000, 
-    // Maximum metadata payload size for audit entries (bytes).
-    maxAuditMetadataBytes: 4096,
-    // Maximum number of audit entries kept in memory.
-    maxInMemoryAuditEntries: 1000,
-  // If true, log every verification action.
-  logAllVerifications: true,
-  // If true, preserve verification audit history.
-  keepAuditTrail: true,
+    criteria: {
+      account_age: "Account must be older than specified days",
+      server_size: "All users if server has less than 1000 members",
+      none: "All users immediately"
+    }
   },
+
+  verificationCooldown: 5000,
+  maxVerificationAttempts: 3,
+  attemptWindow: 60000,
+
+  maxCooldownEntries: 10000,
+  maxAttemptEntries: 10000,
+  cooldownCleanupInterval: 300000,
+
+  maxAuditMetadataBytes: 4096,
+  maxInMemoryAuditEntries: 1000,
+
+  logAllVerifications: true,
+  keepAuditTrail: true,
+},
 
   // =========================
   // WELCOME / GOODBYE MESSAGES
   // =========================
-  welcome: {
-    // Welcome template posted when a user joins.
-    // Placeholders: {user}, {server}, {memberCount}
-    defaultWelcomeMessage:
-      "Welcome {user} to {server}! We now have {memberCount} members!",
-    // Goodbye template posted when a user leaves.
-    // Placeholders: {user}, {memberCount}
-    defaultGoodbyeMessage:
-      "{user} has left the server. We now have {memberCount} members.",
-    // Channel ID for welcome messages.
-    defaultWelcomeChannel: null,
-    // Channel ID for goodbye messages.
-    defaultGoodbyeChannel: null,
-  },
+ welcome: {
+  defaultWelcomeMessage:
+    "🔥 Welcome {user} to CHEATVOID! Fair play starts here. You are member #{memberCount}.",
+
+  defaultGoodbyeMessage:
+    "👋 {user} has left the void. Members remaining: {memberCount}.",
+
+  defaultWelcomeChannel: null,
+  defaultGoodbyeChannel: null,
+},
 
   // =========================
   // COUNTER CHANNELS
@@ -389,12 +341,25 @@ export const botConfig = {
       // Default allowed permissions for the counter channel.
       allow: ["VIEW_CHANNEL", "CONNECT", "SPEAK"],
     },
-    messages: {
-      // Default response messages for counter actions.
-      created: "✅ Created counter **{name}**",
-      deleted: "🗑️ Deleted counter **{name}**",
-      updated: "🔄 Updated counter **{name}**",
-    },
+   messages: {
+  noPermission:
+    "❌ You do not have permission to use this command.",
+
+  cooldownActive:
+    "⏳ Please wait {time} before using this command again.",
+
+  errorOccurred:
+    "🚨 CHEATVOID detected an unexpected error.",
+
+  missingPermissions:
+    "⚠️ Missing permissions required for this action.",
+
+  commandDisabled:
+    "🔒 This command is currently disabled.",
+
+  maintenanceMode:
+    "🛠️ CHEATVOID is currently under maintenance.",
+},
     types: {
       // Built-in counter types and how each count is calculated.
       members: {
